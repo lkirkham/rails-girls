@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_30_181937) do
+ActiveRecord::Schema.define(version: 2020_02_07_174828) do
+
+  create_table "locations", force: :cascade do |t|
+    t.integer "neighbourhood_id", null: false
+    t.float "latitude"
+    t.float "longitude"
+    t.string "address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["neighbourhood_id"], name: "index_locations_on_neighbourhood_id"
+  end
 
   create_table "neighbourhoods", force: :cascade do |t|
     t.string "name"
@@ -21,4 +31,5 @@ ActiveRecord::Schema.define(version: 2020_01_30_181937) do
     t.integer "num_child_care"
   end
 
+  add_foreign_key "locations", "neighbourhoods"
 end
