@@ -1,5 +1,8 @@
 class NeighbourhoodsController < ApplicationController
   before_action :set_neighbourhood, only: [:show, :update, :destroy]
+  before_action :cors_preflight_check
+after_action :cors_set_access_control_headers
+
 
   # GET /neighbourhoods
   def index
